@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joel & Lara 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <section id="login-screen" class="login">
+    <div class="login-card">
+      <div class="heart-big">💕</div>
+      <h1 class="script">Joel & Lara</h1>
+      <p class="muted">Our little corner of the internet</p>
+      <form id="login-form">
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit" class="btn">Enter 💗</button>
+        <p id="login-error" class="error"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- APP -->
+  <div id="app" class="hidden">
+    <header class="nav">
+      <div class="brand script">Joel & Lara 💕</div>
+      <nav>
+        <button class="tab active" data-tab="home">Home</button>
+        <button class="tab" data-tab="story">Our Story</button>
+        <button class="tab" data-tab="gallery">Gallery</button>
+        <button class="tab" data-tab="favorites">Favorites</button>
+        <button class="tab" data-tab="letters">Letters</button>
+        <button class="tab" data-tab="timeline">Timeline</button>
+        <button class="tab" data-tab="music">Music</button>
+      </nav>
+      <div class="nav-right">
+        <button id="music-btn" class="icon-btn" title="Play / Pause">🎵</button>
+        <button id="next-btn" class="icon-btn" title="Next song">⏭</button>
+        <button id="logout-btn" class="icon-btn" title="Logout">⎋</button>
+      </div>
+    </header>
+
+    <!-- HOME -->
+    <main id="tab-home" class="page">
+      <div class="hero">
+        <h2 class="script big">Joel & Lara</h2>
+        <p class="muted">Together since <span id="since-text">…</span></p>
+        <div class="counter">
+          <div><b id="c-days">0</b><span>days</span></div>
+          <div><b id="c-hours">0</b><span>hours</span></div>
+          <div><b id="c-mins">0</b><span>mins</span></div>
+        </div>
+        <div class="countdown">
+          <div class="cd-card" id="cd-month"><small>Next monthsary</small><b>–</b><span></span></div>
+          <div class="cd-card" id="cd-year"><small>Next anniversary</small><b>–</b><span></span></div>
+        </div>
+        <div class="since-edit">
+          <label>Anniversary date:</label>
+          <input type="date" id="since-input" />
+          <button id="since-save" class="btn small">Save</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- STORY -->
+    <main id="tab-story" class="page hidden">
+      <h2 class="script">Our Story 📖</h2>
+      <form id="story-form" class="card">
+        <input id="story-title" placeholder="Title (e.g. First date)" required />
+        <input type="date" id="story-date" />
+        <textarea id="story-text" rows="5" placeholder="Write your memory here…" required></textarea>
+        <button class="btn" type="submit">Save story 💌</button>
+      </form>
+      <div id="story-list" class="stack"></div>
+    </main>
+
+    <!-- GALLERY -->
+    <main id="tab-gallery" class="page hidden">
+      <h2 class="script">Our Gallery 📸</h2>
+      <div class="card">
+        <div id="dropzone" class="dropzone">
+          <div class="dz-icon">📷</div>
+          <p><b>Drag & drop photos here</b><br><span class="muted">or tap to choose (unlimited! 💕)</span></p>
+        </div>
+        <input type="file" id="photo-input" accept="image/*" multiple hidden />
+        <input id="photo-caption" placeholder="Caption for these photos (optional)" />
+        <div id="progress" class="progress hidden"><div id="progress-bar"></div></div>
+        <p id="upload-status" class="muted center"></p>
+      </div>
+      <div class="filter">
+        <button class="chip g-chip active" data-g="all">All <span id="g-count"></span></button>
+        <button class="chip g-chip" data-g="liked">❤️ Liked</button>
+      </div>
+      <div id="gallery-grid" class="polaroids"></div>
+    </main>
+
+    <!-- FAVORITES -->
+    <main id="tab-favorites" class="page hidden">
+      <h2 class="script">Our Favorites ⭐</h2>
+      <form id="fav-form" class="card">
+        <div class="row">
+          <select id="fav-who">
+            <option value="Joel">Joel</option>
+            <option value="Lara">Lara</option>
+            <option value="Both">Both of us</option>
+          </select>
+          <select id="fav-cat">
+            <option>🎨 Color</option>
+            <option>🍔 Food</option>
+            <option>🥤 Drink</option>
+            <option>🍰 Dessert</option>
+            <option>🎬 Movie / Series</option>
+            <option>🎵 Song</option>
+            <option>🎤 Singer / Artist</option>
+            <option>🐶 Animal</option>
+            <option>🌸 Flower</option>
+            <option>🎮 Game</option>
+            <option>📍 Place</option>
+            <option>🧸 Hobby</option>
+            <option>👕 Clothing</option>
+            <option>📚 Book</option>
+            <option>✨ Other</option>
+          </select>
+        </div>
+        <input id="fav-value" placeholder="Favorite (e.g. Pink, Sinigang, Perfect by Ed Sheeran)" required />
+        <label class="photo-pick">
+          <img id="fav-preview" class="hidden" alt="" />
+          <span id="fav-pick-text">📷 Add a photo of it (optional)</span>
+          <input type="file" id="fav-photo" accept="image/*" hidden />
+        </label>
+        <button class="btn" type="submit">Add favorite 💖</button>
+      </form>
+      <div class="filter">
+        <button class="chip fav-chip active" data-who="All">All</button>
+        <button class="chip fav-chip" data-who="Joel">Joel</button>
+        <button class="chip fav-chip" data-who="Lara">Lara</button>
+        <button class="chip fav-chip" data-who="Both">Both</button>
+      </div>
+      <div id="fav-grid" class="fav-grid"></div>
+    </main>
+
+    <!-- LETTERS -->
+    <main id="tab-letters" class="page hidden">
+      <h2 class="script">Love Letters 💌</h2>
+      <form id="letter-form" class="card">
+        <div class="row">
+          <select id="letter-from">
+            <option value="Joel">From Joel</option>
+            <option value="Lara">From Lara</option>
+          </select>
+          <input id="letter-title" list="letter-ideas" placeholder="Open when… (pick or type)" required />
+          <datalist id="letter-ideas">
+            <option value="Open when you miss me"></option>
+            <option value="Open when you're sad"></option>
+            <option value="Open when you can't sleep"></option>
+            <option value="Open when you're stressed"></option>
+            <option value="Open when you need a smile"></option>
+            <option value="Open on our anniversary"></option>
+          </datalist>
+        </div>
+        <textarea id="letter-text" rows="6" placeholder="Write your letter here…" required></textarea>
+        <button class="btn" type="submit">Seal the letter 💌</button>
+      </form>
+      <div id="letter-grid" class="env-grid"></div>
+    </main>
+
+    <!-- TIMELINE -->
+    <main id="tab-timeline" class="page hidden">
+      <h2 class="script">Our Timeline 💗</h2>
+      <form id="tl-form" class="card">
+        <input id="tl-title" placeholder="Milestone (e.g. First date, First 'I love you')" required />
+        <input type="date" id="tl-date" required />
+        <textarea id="tl-text" rows="3" placeholder="What happened? (optional)"></textarea>
+        <label class="photo-pick">
+          <img id="tl-preview" class="hidden" alt="" />
+          <span id="tl-pick-text">📷 Add a photo (optional)</span>
+          <input type="file" id="tl-photo" accept="image/*" hidden />
+        </label>
+        <button class="btn" type="submit">Add to our timeline 💗</button>
+      </form>
+      <div id="tl-list" class="timeline"></div>
+    </main>
+
+    <!-- MUSIC -->
+    <main id="tab-music" class="page hidden">
+      <h2 class="script">Our Music 🎵</h2>
+      <form id="music-form" class="card">
+        <input id="music-title" placeholder="Song title (e.g. Perfect – Ed Sheeran)" required />
+        <label class="btn ghost file-btn">Choose MP3 / audio file
+          <input type="file" id="music-file" accept="audio/*" hidden />
+        </label>
+        <span id="music-file-name" class="muted"></span>
+        <button class="btn" type="submit">Add to our playlist 🎶</button>
+        <p id="music-status" class="muted center"></p>
+      </form>
+      <div class="card player-card">
+        <div id="now-playing">Nothing playing yet</div>
+        <label class="muted">Volume 🔊 <input type="range" id="volume" min="0" max="1" step="0.05" value="0.6" /></label>
+      </div>
+      <div id="music-list" class="stack"></div>
+    </main>
+
+    <footer class="footer muted">Made with 💕 by Joel for Lara</footer>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox hidden">
+    <button class="lb-nav lb-prev" id="lb-prev">‹</button>
+    <figure>
+      <img id="lightbox-img" alt="" />
+      <figcaption id="lightbox-cap"></figcaption>
+    </figure>
+    <button class="lb-nav lb-next" id="lb-next">›</button>
+    <button class="lb-close" id="lb-close">✕</button>
+  </div>
+
+  <!-- Letter modal -->
+  <div id="letter-modal" class="letter-modal hidden">
+    <div class="letter-paper">
+      <button class="letter-close" id="letter-close">✕</button>
+      <h3 id="letter-m-title"></h3>
+      <p id="letter-m-text"></p>
+      <div class="letter-sign" id="letter-m-from"></div>
+    </div>
+  </div>
+
+  <audio id="bgm"></audio>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

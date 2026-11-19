@@ -1,0 +1,12 @@
+{
+  "name": "Joel & Lara",
+  "short_name": "Joel & Lara",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffe3ec",
+  "theme_color": "#ff6b9d",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
